@@ -1,3 +1,5 @@
+import os
+from glob import glob
 from setuptools import find_packages, setup
 
 package_name = 'ros2_python_tutorial'
@@ -10,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,7 +33,8 @@ setup(
             'server = ros2_python_tutorial.service_member_function:main',
             'client = ros2_python_tutorial.client_member_function:main',
             'led_server = ros2_python_tutorial.toggle_led_service:main',
-            'led_client = ros2_python_tutorial.toggle_led_client:main'
+            'led_client = ros2_python_tutorial.toggle_led_client:main',
+            'custom_msg_publisher = ros2_python_tutorial.custom_msg_publisher:main'
         ],
     },
 )

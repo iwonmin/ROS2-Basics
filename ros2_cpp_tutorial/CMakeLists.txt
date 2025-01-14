@@ -14,7 +14,7 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(example_interfaces REQUIRED)
 find_package(std_srvs REQUIRED)
-
+find_package(ros2_interfaces_tutorial REQUIRED)
 add_executable(talker src/publisher_member_function.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
 install(TARGETS
@@ -73,4 +73,14 @@ ament_target_dependencies(led_client rclcpp std_srvs)
 install(TARGETS
   led_client
     DESTINATION lib/${PROJECT_NAME})
+
+add_executable(custom_msg_publisher src/custom_msg_publisher.cpp)
+ament_target_dependencies(custom_msg_publisher rclcpp ros2_interfaces_tutorial)
+install(TARGETS
+  custom_msg_publisher
+  DESTINATION lib/${PROJECT_NAME})  
+
+install(DIRECTORY launch 
+DESTINATION share/${PROJECT_NAME})
+
 ament_package()
