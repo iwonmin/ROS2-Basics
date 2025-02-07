@@ -15,6 +15,8 @@ find_package(std_msgs REQUIRED)
 find_package(example_interfaces REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(ros2_interfaces_tutorial REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(turtlesim REQUIRED)
 add_executable(talker src/publisher_member_function.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
 install(TARGETS
@@ -80,6 +82,18 @@ install(TARGETS
   custom_msg_publisher
   DESTINATION lib/${PROJECT_NAME})  
 
+add_executable(turtlebot_controller src/turtlebot_controller.cpp)
+ament_target_dependencies(turtlebot_controller rclcpp geometry_msgs turtlesim)
+install(TARGETS 
+  turtlebot_controller
+  DESTINATION lib/${PROJECT_NAME})
+
+add_executable(turtlebot_squarecrack src/turtlebot_squarecrack.cpp)
+ament_target_dependencies(turtlebot_squarecrack rclcpp geometry_msgs turtlesim)
+install(TARGETS 
+  turtlebot_squarecrack
+  DESTINATION lib/${PROJECT_NAME})
+  
 install(DIRECTORY launch 
 DESTINATION share/${PROJECT_NAME})
 
